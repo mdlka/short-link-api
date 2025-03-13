@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortLink.WebAPI", "src\Sho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortLink.Core", "src\ShortLink.Core\ShortLink.Core.csproj", "{86237D8A-C231-4915-92BC-787B13CF210E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortLink.Core.Tests", "tests\ShortLink.Core.Tests\ShortLink.Core.Tests.csproj", "{711AE656-6D49-43DE-8131-2A94480986D4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{86237D8A-C231-4915-92BC-787B13CF210E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86237D8A-C231-4915-92BC-787B13CF210E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86237D8A-C231-4915-92BC-787B13CF210E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{711AE656-6D49-43DE-8131-2A94480986D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{711AE656-6D49-43DE-8131-2A94480986D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{711AE656-6D49-43DE-8131-2A94480986D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{711AE656-6D49-43DE-8131-2A94480986D4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
