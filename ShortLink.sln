@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortLink.WebAPI", "ShortLink.WebAPI\ShortLink.WebAPI.csproj", "{1C03652E-B6F4-4B71-9BAF-5AA743A3C433}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortLink.WebAPI", "src\ShortLink.WebAPI\ShortLink.WebAPI.csproj", "{1C03652E-B6F4-4B71-9BAF-5AA743A3C433}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortLink.Core", "ShortLink.Core\ShortLink.Core.csproj", "{86237D8A-C231-4915-92BC-787B13CF210E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortLink.Core", "src\ShortLink.Core\ShortLink.Core.csproj", "{86237D8A-C231-4915-92BC-787B13CF210E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
