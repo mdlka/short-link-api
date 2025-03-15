@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ShortLink.Core.Repositories;
 using ShortLink.Infrastructure.Persistence;
@@ -8,9 +9,10 @@ namespace ShortLink.Infrastructure.Extensions
 {
     public static class ServicesExtensions
     {
-        public static void AddInfrastructureServices(this IServiceCollection services)
+        public static void AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase("short_link"));
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseNpgsql(configuration.GetConnectionString("ApplicationContext")));
 
             services.AddTransient<IShortUrlsRepository, ShortUrlsRepository>();
         }

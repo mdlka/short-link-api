@@ -17,7 +17,6 @@ namespace ShortLink.Core.Services
         {
             var shortUrl = new ShortUrl
             {
-                Id = Guid.NewGuid(),
                 OriginalUrl = url,
                 ShortCode = Guid.NewGuid().ToString("N")[..CoreConstants.ShortCodeLength]
             };

@@ -11,7 +11,7 @@ namespace ShortLink.WebAPI
             var builder = WebApplication.CreateBuilder(args);
             
             builder.Services.AddCoreServices();
-            builder.Services.AddInfrastructureServices();
+            builder.Services.AddInfrastructureServices(builder.Configuration);
             builder.Services.AddWebApiServices();
             
             var app = builder.Build();
