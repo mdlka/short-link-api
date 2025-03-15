@@ -1,6 +1,4 @@
-﻿using Microsoft.OpenApi.Models;
-
-namespace ShortLink.WebAPI.Extensions
+﻿namespace ShortLink.WebAPI.Extensions
 {
     public static class ServicesExtensions
     {

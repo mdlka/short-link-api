@@ -1,16 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ShortLink.Core.Exceptions;
+﻿using ShortLink.Core.Exceptions;
 using ShortLink.Core.Models;
-using ShortLink.Core.Persistence;
+using ShortLink.Core.Repositories;
 
 namespace ShortLink.Core.Services
 {
-    internal class ShortLinkService(ApplicationDbContext dbContext) : IShortLinkService
+    internal class ShortLinkService(IShortUrlsRepository shortUrlsRepository) : IShortLinkService
     {
         public async Task<string> GetOriginalUrl(string code)
         {
-            var shortUrl = await dbContext.ShortUrls.FirstOrDefaultAsync(u => u.ShortCode == code) ??
-                    throw new NotFoundException();
+            var shortUrl = await shortUrlsRepository.GetAsync(code) ?? throw new NotFoundException();
 
             return shortUrl.OriginalUrl;
         }
@@ -24,9 +22,8 @@ namespace ShortLink.Core.Services
                 ShortCode = Guid.NewGuid().ToString("N")[..CoreConstants.ShortCodeLength]
             };
 
-            await dbContext.ShortUrls.AddAsync(shortUrl);
-            await dbContext.SaveChangesAsync();
-            
+            await shortUrlsRepository.AddAsync(shortUrl);
+
             return shortUrl;
         }
     }

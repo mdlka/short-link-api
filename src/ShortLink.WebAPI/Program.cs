@@ -1,5 +1,6 @@
 using ShortLink.Core.Extensions;
 using ShortLink.Core.Services;
+using ShortLink.Infrastructure.Extensions;
 using ShortLink.WebAPI.Extensions;
 
 namespace ShortLink.WebAPI
@@ -11,6 +12,7 @@ namespace ShortLink.WebAPI
             var builder = WebApplication.CreateBuilder(args);
             
             builder.Services.AddCoreServices();
+            builder.Services.AddInfrastructureServices();
             builder.Services.AddWebApiServices();
             
             var app = builder.Build();
@@ -19,11 +21,11 @@ namespace ShortLink.WebAPI
             
             app.UseHttpsRedirection();
             
-            app.MapPost("/shorten/{url}", (string url, IShortLinkService shortLinkService) 
-                => shortLinkService.CreateShortUrl(url));
+            app.MapPost("/shorten/{url}", async (string url, IShortLinkService shortLinkService) 
+                => await shortLinkService.CreateShortUrl(url));
             
-            app.MapGet("/{code}", (string code, IShortLinkService shortLinkService) 
-                => shortLinkService.GetOriginalUrl(code));
+            app.MapGet("/{code}", async (string code, IShortLinkService shortLinkService) 
+                => await shortLinkService.GetOriginalUrl(code));
             
             app.Run();
         }

@@ -10,8 +10,7 @@ namespace ShortLink.Core.Tests.Services
         public async Task CreateShortUrl_ShouldGenerateCorrectLengthCode()
         {
             // Arrange
-            await using var dbContext = new MockDbContextFactory().CreateDbContext();
-            var shortLinkService = new ShortLinkService(dbContext);
+            var shortLinkService = new ShortLinkService(new FakeShortUrlsRepository());
 
             // Act
             var result = await shortLinkService.CreateShortUrl("https://test.com");
@@ -24,8 +23,7 @@ namespace ShortLink.Core.Tests.Services
         public async Task CreateShortUrl_ShouldGenerateDifferentCodesForDifferentUrl()
         {
             // Arrange
-            await using var dbContext = new MockDbContextFactory().CreateDbContext();
-            var shortLinkService = new ShortLinkService(dbContext);
+            var shortLinkService = new ShortLinkService(new FakeShortUrlsRepository());
             
             // Act
             var firstUrl = await shortLinkService.CreateShortUrl("https://test1.com");
@@ -39,8 +37,7 @@ namespace ShortLink.Core.Tests.Services
         public async Task CreateShortUrl_ShouldGenerateDifferentCodesForSameUrl()
         {
             // Arrange
-            await using var dbContext = new MockDbContextFactory().CreateDbContext();
-            var shortLinkService = new ShortLinkService(dbContext);
+            var shortLinkService = new ShortLinkService(new FakeShortUrlsRepository());
             
             // Act
             var firstUrl = await shortLinkService.CreateShortUrl("https://test.com");
@@ -54,8 +51,7 @@ namespace ShortLink.Core.Tests.Services
         public async Task CreateShortUrl_ShouldGenerateAlphanumericCode()
         {
             // Arrange
-            await using var dbContext = new MockDbContextFactory().CreateDbContext();
-            var shortLinkService = new ShortLinkService(dbContext);
+            var shortLinkService = new ShortLinkService(new FakeShortUrlsRepository());
     
             // Act
             var result = await shortLinkService.CreateShortUrl("https://test.com");
@@ -68,8 +64,7 @@ namespace ShortLink.Core.Tests.Services
         public async Task GetOriginalUrl_ShouldThrowNotFoundExceptionIfCodeNotExist()
         {
             // Arrange
-            await using var dbContext = new MockDbContextFactory().CreateDbContext();
-            var shortLinkService = new ShortLinkService(dbContext);
+            var shortLinkService = new ShortLinkService(new FakeShortUrlsRepository());
 
             // Act && Assert
             await Assert.ThrowsAsync<NotFoundException>(() => shortLinkService.GetOriginalUrl("not_exist"));
@@ -84,9 +79,7 @@ namespace ShortLink.Core.Tests.Services
         public async Task GetOriginalUrl_ShouldReturnCorrectUrl(string url)
         {
             // Arrange
-            await using var dbContext = new MockDbContextFactory().CreateDbContext();
-            var shortLinkService = new ShortLinkService(dbContext);
-            
+            var shortLinkService = new ShortLinkService(new FakeShortUrlsRepository());
             var shortUrl = await shortLinkService.CreateShortUrl(url);
             
             // Act
