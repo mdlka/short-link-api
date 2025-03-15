@@ -8,16 +8,16 @@ namespace ShortLink.WebAPI.Controllers
     public class ShortLinkController(IShortLinkService shortLinkService) : ControllerBase
     {
         [HttpGet("{code}")]
-        public async Task<string> GetOriginalUrl(string code)
+        public async Task<IActionResult> RedirectToOriginalUrl(string code)
         {
-            return await shortLinkService.GetOriginalUrl(code);
+            return Redirect(await shortLinkService.GetOriginalUrl(code));
         }
 
         [HttpPost("shorten/")]
         public async Task<IActionResult> CreateShortUrl([FromBody] [Url] string url)
         {
             var shortUrl = await shortLinkService.CreateShortUrl(url);
-            return CreatedAtAction(nameof(GetOriginalUrl), new { code = shortUrl.ShortCode }, shortUrl);
+            return CreatedAtAction(nameof(RedirectToOriginalUrl), new { code = shortUrl.ShortCode }, shortUrl);
         }
     }
 }
