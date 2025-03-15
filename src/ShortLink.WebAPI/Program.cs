@@ -1,5 +1,4 @@
 using ShortLink.Core.Extensions;
-using ShortLink.Core.Services;
 using ShortLink.Infrastructure.Extensions;
 using ShortLink.WebAPI.Extensions;
 
@@ -20,12 +19,7 @@ namespace ShortLink.WebAPI
             app.ConfigureSwagger();
             
             app.UseHttpsRedirection();
-            
-            app.MapPost("/shorten/{url}", async (string url, IShortLinkService shortLinkService) 
-                => await shortLinkService.CreateShortUrl(url));
-            
-            app.MapGet("/{code}", async (string code, IShortLinkService shortLinkService) 
-                => await shortLinkService.GetOriginalUrl(code));
+            app.MapControllers();
             
             app.Run();
         }

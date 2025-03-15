@@ -4,7 +4,7 @@
     {
         public static void AddWebApiServices(this IServiceCollection services)
         {
-            services.AddEndpointsApiExplorer();
+            services.AddControllers();
             services.AddSwaggerGen();
         }
     }
