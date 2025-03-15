@@ -7,8 +7,6 @@ namespace ShortLink.Core.Services
 {
     internal class ShortLinkService(ApplicationDbContext dbContext) : IShortLinkService
     {
-        private const int CodeLength = 8;
-        
         public async Task<string> GetOriginalUrl(string code)
         {
             var shortUrl = await dbContext.ShortUrls.FirstOrDefaultAsync(u => u.ShortCode == code) ??
@@ -23,7 +21,7 @@ namespace ShortLink.Core.Services
             {
                 Id = Guid.NewGuid(),
                 OriginalUrl = url,
-                ShortCode = Guid.NewGuid().ToString("N")[..CodeLength]
+                ShortCode = Guid.NewGuid().ToString("N")[..CoreConstants.ShortCodeLength]
             };
 
             await dbContext.ShortUrls.AddAsync(shortUrl);
