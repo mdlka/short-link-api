@@ -16,7 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\src\ShortLink.Core\ShortLink.Core.csproj" />
+      <ProjectReference Include="..\ShortLink.Core\ShortLink.Core.csproj" />
     </ItemGroup>
 
 </Project>

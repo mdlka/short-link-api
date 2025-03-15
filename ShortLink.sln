@@ -6,7 +6,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortLink.Core", "src\Short
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortLink.Core.Tests", "tests\ShortLink.Core.Tests\ShortLink.Core.Tests.csproj", "{711AE656-6D49-43DE-8131-2A94480986D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortLink.Infrastructure", "ShortLink.Infrastructure\ShortLink.Infrastructure.csproj", "{C11EE4CA-A363-408A-BED3-E2493D6082D8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortLink.Infrastructure", "src\ShortLink.Infrastructure\ShortLink.Infrastructure.csproj", "{C11EE4CA-A363-408A-BED3-E2493D6082D8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\ShortLink.Infrastructure\ShortLink.Infrastructure.csproj" />
+      <ProjectReference Include="..\ShortLink.Infrastructure\ShortLink.Infrastructure.csproj" />
       <ProjectReference Include="..\ShortLink.Core\ShortLink.Core.csproj" />
     </ItemGroup>
 
