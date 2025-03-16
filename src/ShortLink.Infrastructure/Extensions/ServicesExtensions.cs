@@ -14,6 +14,9 @@ namespace ShortLink.Infrastructure.Extensions
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(configuration.GetConnectionString("ApplicationContext")));
 
+            services.AddStackExchangeRedisCache(options =>
+                options.Configuration = configuration.GetConnectionString("Redis"));
+
             services.AddTransient<IShortUrlsRepository, ShortUrlsRepository>();
         }
     }
