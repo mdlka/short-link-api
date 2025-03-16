@@ -24,8 +24,6 @@ namespace ShortLink.Infrastructure.Persistence.Configuration
                 .HasColumnName("short_code")
                 .IsRequired();
 
-            builder.HasIndex(s => s.OriginalUrl);
-            
             builder.HasIndex(s => s.ShortCode)
                 .IsUnique();
         }
