@@ -22,6 +22,7 @@ namespace ShortLink.Infrastructure.Persistence.Configuration
 
             builder.Property(s => s.ShortCode)
                 .HasColumnName("short_code")
+                .HasMaxLength(20)
                 .IsRequired();
 
             builder.HasIndex(s => s.ShortCode)
