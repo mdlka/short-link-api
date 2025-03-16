@@ -1,4 +1,5 @@
-﻿using ShortLink.Core.Exceptions;
+﻿using System.Security.Cryptography;
+using ShortLink.Core.Exceptions;
 using ShortLink.Core.Models;
 using ShortLink.Core.Repositories;
 
@@ -18,12 +19,26 @@ namespace ShortLink.Core.Services
             var shortUrl = new ShortUrl
             {
                 OriginalUrl = url,
-                ShortCode = Guid.NewGuid().ToString("N")[..CoreConstants.ShortCodeLength]
+                ShortCode = GenerateShortCode(CoreConstants.ShortCodeLength)
             };
 
             await shortUrlsRepository.AddAsync(shortUrl);
 
             return shortUrl;
+        }
+
+        private static string GenerateShortCode(int length)
+        {
+            byte[] bytes = new byte[length];
+    
+            using var rng = RandomNumberGenerator.Create();
+            rng.GetBytes(bytes);
+    
+            return string.Create(length, CoreConstants.ShortCodeCharacters, (span, chars) => 
+            {
+                for (int i = 0; i < span.Length; i++)
+                    span[i] = chars[bytes[i] % chars.Length];
+            });
         }
     }
 }
