@@ -1,0 +1,27 @@
+﻿version: "3.9"
+
+services:
+  webapp:
+    container_name: shortlink_web_api
+    build:
+      context: .
+      dockerfile: src/ShortLink.WebAPI/Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres_db
+    
+  postgres_db:
+    container_name: db_postgres_container
+    image: postgres:17.4
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mdlka
+      POSTGRES_DB: short_link
+    ports:  
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+  
+volumes:
+  postgres_data:
