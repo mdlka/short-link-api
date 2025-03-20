@@ -19,5 +19,13 @@ namespace ShortLink.Infrastructure.Extensions
 
             services.AddTransient<IShortUrlsRepository, ShortUrlsRepository>();
         }
+        
+        public static async Task ApplyMigrations(this IServiceProvider serviceProvider)
+        {
+            using var scope = serviceProvider.CreateScope();
+            
+            await using var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            await dbContext.Database.MigrateAsync();
+        }
     }
 }

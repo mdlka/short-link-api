@@ -6,7 +6,7 @@ namespace ShortLink.WebAPI
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
             
@@ -15,13 +15,17 @@ namespace ShortLink.WebAPI
             builder.Services.AddWebApiServices();
             
             var app = builder.Build();
-            
-            app.ConfigureSwagger();
-            
+
+            if (app.Environment.IsDevelopment())
+            {
+                app.ConfigureSwagger();
+                await app.ApplyMigrations();
+            }
+
             app.UseHttpsRedirection();
             app.MapControllers();
             
-            app.Run();
+            await app.RunAsync();
         }
     }
 }

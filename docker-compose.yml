@@ -1,6 +1,4 @@
-﻿version: "3.9"
-
-services:
+﻿services:
   webapp:
     container_name: shortlink_web_api
     build:
@@ -8,8 +6,11 @@ services:
       dockerfile: src/ShortLink.WebAPI/Dockerfile
     ports:
       - "8080:8080"
+    environment:
+      - DOTNET_ENVIRONMENT=Development
     depends_on:
-      - postgres_db
+      postgres_db:
+        condition: service_healthy
     
   postgres_db:
     container_name: db_postgres_container
@@ -19,9 +20,14 @@ services:
       POSTGRES_PASSWORD: mdlka
       POSTGRES_DB: short_link
     ports:  
-      - "5432:5432"
+      - "9090:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres -d short_link" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
   
 volumes:
   postgres_data:
