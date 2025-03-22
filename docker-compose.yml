@@ -1,6 +1,6 @@
 ﻿services:
-  webapp:
-    container_name: shortlink_web_api
+  webapi:
+    container_name: shortlink-webapi
     build:
       context: .
       dockerfile: src/ShortLink.WebAPI/Dockerfile
@@ -11,9 +11,11 @@
     depends_on:
       postgres_db:
         condition: service_healthy
+      redis_cache:
+        condition: service_healthy
     
   postgres_db:
-    container_name: db_postgres_container
+    container_name: shortlink-postgres
     image: postgres:17.4
     environment:
       POSTGRES_USER: postgres
@@ -28,6 +30,26 @@
       interval: 5s
       timeout: 5s
       retries: 5
-  
+      
+  redis_cache:
+    container_name: shortlink-redis
+    image: redis:7.4.2
+    environment:
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=mdlka
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis_data:/root/redis
+      - redis_conf:/usr/local/etc/redis/redis.conf
+    command: redis-server --requirepass mdlka
+    healthcheck:
+      test: [ "CMD", "redis-cli", "-a", "mdlka", "ping" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      
 volumes:
   postgres_data:
+  redis_data:
+  redis_conf:
