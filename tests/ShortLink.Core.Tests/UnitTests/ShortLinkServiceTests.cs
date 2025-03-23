@@ -2,7 +2,7 @@
 using ShortLink.Core.Services;
 using ShortLink.Core.Tests.Mock;
 
-namespace ShortLink.Core.Tests.Services
+namespace ShortLink.Core.Tests.UnitTests
 {
     public class ShortLinkServiceTests
     {
