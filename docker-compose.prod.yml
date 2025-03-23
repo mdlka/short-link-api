@@ -1,0 +1,4 @@
+services:
+  webapi:
+    environment:
+      - DOTNET_ENVIRONMENT=Production
