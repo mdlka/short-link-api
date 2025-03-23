@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.dockerignore = .dockerignore
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShortLink.WebAPI.Tests", "tests\ShortLink.WebAPI.Tests\ShortLink.WebAPI.Tests.csproj", "{18B565D3-4CB9-4FE3-B92B-97EC69D1B64D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,5 +39,9 @@ Global
 		{C11EE4CA-A363-408A-BED3-E2493D6082D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C11EE4CA-A363-408A-BED3-E2493D6082D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C11EE4CA-A363-408A-BED3-E2493D6082D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18B565D3-4CB9-4FE3-B92B-97EC69D1B64D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18B565D3-4CB9-4FE3-B92B-97EC69D1B64D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18B565D3-4CB9-4FE3-B92B-97EC69D1B64D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18B565D3-4CB9-4FE3-B92B-97EC69D1B64D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
