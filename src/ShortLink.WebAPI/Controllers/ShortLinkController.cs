@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using ShortLink.Core.Services;
+using ShortLink.WebAPI.DTO;
 
 namespace ShortLink.WebAPI.Controllers
 {
@@ -14,9 +14,9 @@ namespace ShortLink.WebAPI.Controllers
         }
 
         [HttpPost("shorten/")]
-        public async Task<IActionResult> CreateShortUrl([FromBody] [Url] string url)
+        public async Task<IActionResult> CreateShortUrl([FromBody] CreateShortUrlRequest request)
         {
-            var shortUrl = await shortLinkService.CreateShortUrl(url);
+            var shortUrl = await shortLinkService.CreateShortUrl(request.Url);
             return CreatedAtAction(nameof(RedirectToOriginalUrl), new { code = shortUrl.ShortCode }, shortUrl);
         }
     }
