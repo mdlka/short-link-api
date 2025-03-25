@@ -17,10 +17,9 @@ namespace ShortLink.WebAPI
             var app = builder.Build();
 
             if (app.Environment.IsDevelopment())
-            {
                 app.ConfigureSwagger();
-                await app.ApplyMigrations();
-            }
+            
+            await app.ApplyMigrations();
 
             app.UseHttpsRedirection();
             app.MapControllers();

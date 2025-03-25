@@ -22,7 +22,7 @@
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: mdlka
     ports:  
-      - "9090:5432"
+      - "5433:5432"
     volumes:
       - ./.containers/postgres/data:/var/lib/postgresql/data
     healthcheck:
